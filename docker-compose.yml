@@ -1,0 +1,46 @@
+services:
+  # web:
+  #   container_name: web
+  #   build: .
+  #   ports:
+  #     - "8000:5000"
+
+  # redis:
+  #   container_name: redis
+  #   image: "redis:alpine"
+      
+
+  # lqb:
+  #   container_name: lqb
+  #   build:
+  #       context: ./lqb 
+
+
+    
+    
+  lqb_pure:
+    image: liquibase/liquibase:4.23
+    container_name: lqb_pure
+    volumes:
+      - ./lqb:/liquibase/changelog
+      - ./lqb/docker-entrypoint.sh:/liquibase/docker-entrypoint.sh
+    
+
+  
+  db: 
+    container_name: db
+    image: postgres:13
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+    - ./pg_scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - 5432:5432
+
+  
+  adminer:
+    image: adminer
+    container_name: db_admin
+    restart: always
+    ports:
+      - 8081:8080

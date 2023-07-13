@@ -1,0 +1,3 @@
+CREATE SCHEMA person;
+CREATE SCHEMA sports;
+
