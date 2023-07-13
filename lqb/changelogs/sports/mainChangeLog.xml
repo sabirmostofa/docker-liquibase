@@ -8,9 +8,7 @@
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
         http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
-    <preConditions>  
-        <runningAs  username="liquibase"/>  
-    </preConditions>  
+
 
     <changeSet  id="1"  author="nvoxland">  
         <createTable  tableName="sports">  
@@ -26,13 +24,13 @@
     </changeSet>  
 
     <changeSet  id="2"  author="nvoxland">  
-        <addColumn  tableName="person">  
+        <addColumn  tableName="sports">  
             <column  name="username"  type="varchar(8)"/>  
         </addColumn>  
     </changeSet>  
     <changeSet  id="3"  author="nvoxland">  
         <addLookupTable  
-            existingTableName="person"  existingColumnName="state"  
+            existingTableName="sports"  existingColumnName="state"  
             newTableName="state"  newColumnName="id"  newColumnDataType="char(2)"/>  
     </changeSet>  
 
